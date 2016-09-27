@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var request = require('request')
+  , program = require('commander')
+  , users = require('./users')
+
+function requiredArgument(arg) {
+  console.error('\n  ' + arg + ' argument is required');
+  program.help();
+  process.exit(1);
+}
+
+program
+  .version('0.0.1')
+  .option('-a, --account <account>', 'Vivocha account')
+  .option('-u, --user <user>', 'Vivocha user (must be an admin user)')
+  .option('-p, --password <password>', 'Vivocha user password')
+  .parse(process.argv);
+
+if (!program.account) requiredArgument('account');
+if (!program.user) requiredArgument('user');
+if (!program.password) requiredArgument('password');
+
+var __vvcAcct = program.account         // your vivocha account
+  , __vvcUser = program.user            // your vivocha userid
+  , __vvcPass = program.password        // your vivocha password
+  , __vvcHost = "m1.vivocha.com"        // your vivocha host (usually www.vivocha.com)
+  , __vvcPath = "/a/" + __vvcAcct + "/login?type=json"
+
+function pushUser(user) {
+  user.onBehalfOf = user.id;
+  delete user.id;
+  request({
+      url : "https://" + __vvcHost + __vvcPath,
+      headers : {
+        "Accept": "application/json",
+      },
+      auth: {
+        username: __vvcUser,
+        password: __vvcPass
+      },
+      removeRefererHeader: true,
+      method: 'POST',
+      form: user
+    },
+    function (err, res, body) {
+      if (err) {
+        console.error("User provisioning error", err);
+      } else {
+        console.log('User provisioning succeeded', res.headers, body);
+      }
+    }
+  );
+}
+
+for (var i = 0; i < users.length; i++) {
+  pushUser(users[i]);
+}

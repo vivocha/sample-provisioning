@@ -1,0 +1,10 @@
+{
+  "name": "vvc-sample-provisioning",
+  "version": "0.0.1",
+  "description": "Vivocha user provisioning sample application",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "request": "^2.75.0"
+  },
+  "main": "provisioning"
+}
