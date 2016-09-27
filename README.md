@@ -12,9 +12,11 @@ $ npm install
 
 And then you can add/edit the users in the users.js module.
 
+### Users properties
+
 | Parameter  | Required | Description |
-| ---------- |:--------:| --- |
-| onBehalfOf | YES      | Agent user id on behalf of we want to login (if the agent does not exists in our database it will be created otherwise it will be updated) |
+| ---------- |:--------:| ----------- |
+| id         | YES      | Agent user id on behalf of we want to login (if the agent does not exists in our database it will be created otherwise it will be updated) |
 | keep       | NO       | Keeps the values on the Vivocha database instead of the values (this value is ignored for the password property that is always updated) |
 | media      | NO       | Media allowed for the agent (chat,voip,video) |
 | nickname   | NO       | Nickname |
