@@ -1,10 +1,21 @@
 {
-  "name": "vvc-sample-provisioning",
+  "name": "@vivocha/sample-provisioning",
   "version": "0.0.1",
   "description": "Vivocha user provisioning sample application",
+  "main": "provisioning",
+  "author": "Vivocha Dev Team <dev@vivocha.com> (http://www.vivocha.com/)",
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "provisioning",
+    "users.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "vvcprovisioning": "./login"
+  },
   "dependencies": {
     "commander": "^2.9.0",
     "request": "^2.75.0"
-  },
-  "main": "provisioning"
+  }
 }

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-var request = require('request')
-  , program = require('commander')
-  , users = require('./users')
+const request = require('request');
+const program = require('commander');
+const packageJSON = require('./package.json');
+const users = require('./users.json');
 
 function requiredArgument(arg) {
   console.error('\n  ' + arg + ' argument is required');
@@ -11,7 +12,7 @@ function requiredArgument(arg) {
 }
 
 program
-  .version('0.0.1')
+  .version(packageJSON.version)
   .option('-a, --account <account>', 'Vivocha account')
   .option('-u, --user <user>', 'Vivocha user (must be an admin user)')
   .option('-p, --password <password>', 'Vivocha user password')
